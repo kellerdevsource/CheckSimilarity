@@ -12,6 +12,7 @@ namespace CheckSimilarity
             string path = "";
             string name = "";
             string file = "";
+            string input = "";
             bool inputBad = true;
             Figure[] figures = new Figure[2];
             while (inputBad)
@@ -31,7 +32,7 @@ namespace CheckSimilarity
                         Console.WriteLine("Invalid Directory");
                         Console.WriteLine(" ");
                     }
-                    
+
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -40,7 +41,7 @@ namespace CheckSimilarity
                 }
             }
 
-            
+
             for (int n = 0; n < 2; n++)
             {
                 inputBad = true;
@@ -107,21 +108,34 @@ namespace CheckSimilarity
             Console.WriteLine("___________________________________");
             figures[0].NormalizeSize(240.0F);
             figures[1].NormalizeSize(240.0F);
-            Console.WriteLine("Check if the figures are similar with eachother? (Y/N)");
-            if (Console.ReadLine().ToUpper() == "Y")
+            inputBad = true;
+            while (inputBad)
             {
-                if (Check(figures))
+                Console.WriteLine("Check if the figures are similar with eachother? (Y/N)");
+                input = Console.ReadLine().ToUpper();
+                if (input == "Y")
                 {
-                    Console.WriteLine(" ");
-                    Console.WriteLine("The figures are simmilar!");
+                    inputBad = false;
+                    if (Check(figures))
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("The figures are simmilar!");
+                    }
+                    else
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("The figures are not simmilar!");
+                    }
+                }
+                else if (input == "N")
+                {
+                    inputBad = false;
                 }
                 else
                 {
-                    Console.WriteLine(" ");
-                    Console.WriteLine("The figures are not simmilar!");
+                    Console.WriteLine("Invalid Input");
                 }
             }
-
             Form1 form = new Form1();
             form.Figure1Data = figures[0].vertices;
             form.Figure2Data = figures[1].vertices;
