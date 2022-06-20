@@ -107,6 +107,21 @@ namespace CheckSimilarity
             Console.WriteLine("___________________________________");
             figures[0].NormalizeSize(240.0F);
             figures[1].NormalizeSize(240.0F);
+            Console.WriteLine("Check if the figures are similar with eachother? (Y/N)");
+            if (Console.ReadLine().ToUpper() == "Y")
+            {
+                if (Check(figures))
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("The figures are simmilar!");
+                }
+                else
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("The figures are not simmilar!");
+                }
+            }
+
             Form1 form = new Form1();
             form.Figure1Data = figures[0].vertices;
             form.Figure2Data = figures[1].vertices;
